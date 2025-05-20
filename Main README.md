@@ -1,9 +1,8 @@
-package poo.sistemabibliotecafelipemaia2a;
+package poo.sistemabibliotecafelipemaiaspanemberg2a;
 
 import java.util.Scanner;
 
-public class SistemaBibliotecaFelipeMaia2A {
-
+public class SistemaBibliotecaFelipeMaiaSpanemberg2A {
     public static void main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
         Scanner scanner = new Scanner(System.in);
@@ -73,30 +72,43 @@ public class SistemaBibliotecaFelipeMaia2A {
                     System.out.print("ISBN do livro para emprestar: ");
                     String isbnEmprestimo = scanner.nextLine();
                     if (biblioteca.emprestarLivro(isbnEmprestimo)) {
-                        System.out.println("Livro emprestado.");
+                        System.out.println("Livro emprestado com sucesso.");
                     } else {
-                        System.out.println("Livro não disponível.");
+                        System.out.println("Livro não disponível ou não encontrado.");
                     }
                     break;
 
                 case "5":
-                    biblioteca.listarLivros().forEach(System.out::println);
+                    System.out.println("\nLista de Livros:");
+                    for (Livro livro : biblioteca.listarLivros()) {
+                        System.out.println(livro);
+                    }
                     break;
 
                 case "6":
-                    biblioteca.listarUsuarios().forEach(System.out::println);
+                    System.out.println("\nLista de Usuários:");
+                    for (Usuario usuario : biblioteca.listarUsuarios()) {
+                        System.out.println(usuario);
+                    }
                     break;
 
                 case "7":
-                    biblioteca.listarAdministradores().forEach(System.out::println);
+                    System.out.println("\nLista de Administradores:");
+                    for (Administrador administrador : biblioteca.listarAdministradores()) {
+                        System.out.println(administrador);
+                    }
                     break;
 
                 case "0":
                     System.out.println("Saindo...");
                     break;
+
                 default:
-                    System.out.println("Opção inválida!");
+                    System.out.println("Opção inválida.");
+                    break;
             }
         } while (!opcao.equals("0"));
+
+        scanner.close();
     }
 }
